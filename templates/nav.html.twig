@@ -1,0 +1,45 @@
+
+<header>
+  {% block header %}
+ <nav class="navbar navbar-expand-lg bg-body-tertiary ml-5">
+  <div class="container-fluid">
+       <a class="navbar-brand" href= >Accueil</a>
+       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+    
+     <div class="collapse navbar-collapse " id="navbarSupportedContent">
+          <a class="nav-link dropdown-toggle  " href="{{path('app_livres') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Livres
+          </a>
+          <ul class="dropdown-menu">
+          <li><a href="{{path('app_livres') }}">Tous les livres</a></li>
+            <li><a class="dropdown-item" href="{{path('app_livres') }}">par_auteur</a></li>
+            <li><a class="dropdown-item" href="{{path('app_livres') }}">par_editeur</a></li>
+            <li><a class="dropdown-item" href="{{path('app_livres') }}">par_titre</a></li>
+          </ul>
+          {# <a class="nav-link dropdown-toggle" href="?controller=livres&action=all_fournisseurs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Fournisseurs
+          </a>
+          <ul class="dropdown-menu">
+          <li><a  href="?controller=fournisseurs&action=all_fournisseurs">Tous les Fournisseurs</a></li>
+            <li><a class="dropdown-item" href="?controller=fournisseurs&action=fournisseur_raison_sociale">par_raison_sociale</a></li>
+            <li><a class="dropdown-item" href="?controller=fournisseurs&action=fournisseur_localite">par_localité</a></li>
+            <li><a class="dropdown-item" href="?controller=fournisseurs&action=fournisseur_pays">par_pays</a></li>
+          </ul>
+          <a class="nav-link dropdown-toggle" href="?controller=livres&action=all_commandes" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Commandes
+          </a>
+          <ul class="dropdown-menu">
+          <li><a  href="?controller=commandes&action=all_commandes">Toutes les commandes</a></li>
+            <li><a class="dropdown-item" href="?controller=commandes&action=commande_date">par_date</a></li>
+            <li><a class="dropdown-item" href="?controller=commandes&action=commande_fournisseur">par_fournisseur</a></li>
+            <li><a class="dropdown-item" href="?controller=commandes&action=commande_editeur">par_editeur</a></li>
+          </ul>  
+    </div> #}
+     
+    
+  </div>
+</nav>
+ {% endblock %}
+</header>

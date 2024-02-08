@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Livres!{% endblock %}
+
+{% block body %}
+ 
+<div class= "container    ">
+  <h1 class=" text-aligne text-center"> Liste des Livres </h1>
+   <a href= "{{path('livres_add') }}" > <button class="btn btn-primary mx-2 mb-2">{{ ' Ajouter' }}</button></a>
+<table class=" table table-bordered  " >
+  <thead>
+    <tr>
+    <th class="able-danger">ISBN </th> 
+    <th class="able-danger">Titre_livre </th>
+    <th class="able-danger"> Theme_livre</th>
+    <th class="able-danger">Nbr_pages_livre</th>
+    <th class="able-danger">Format_livre</th>
+    <th class="able-danger">Nom_auteur</th>
+    <th class="able-danger">Prenom_auteur</th>
+    <th class="able-danger">Editeur</th>
+    <th class="able-danger">Annee_edition</th>
+    <th class="able-danger">Prix_vente</th>
+    <th class="able-danger">Langue_livre</th>
+    <th class="able-danger">Actions</th>
+   </tr>
+  </thead>
+    {% for livre in livres %}
+    <tr>
+    <td> {{livre.getISBN() }} </td> 
+    <td> {{livre.getTitrelivre()}} </td>
+    <td> {{livre.getThemelivre()}} </td>
+     <td> {{livre.getNbrpageslivre()}} </td>
+     <td> {{livre.getFormatlivre()}} </td>
+     <td> {{livre.getNomauteur()}} </td>
+     <td> {{livre.getPrenomauteur()}} </td>
+     <td> {{livre.getEditeur()}} </td>
+     <td> {{livre.getAnneeedition()}} </td>
+     <td> {{livre.getPrixvente()}} </td>
+     <td> {{livre.getLanguelivre()}} </td>
+     <td>
+      <div class="d-flex flex-row">
+        <a href= "{{path('livres_edit',{'id':livre.id}) }}" ><button type="update" class="btn btn-warning btn-sm me-3"><i class="bi bi-pencil-fill"></i></button></a>
+         <a href="{{ path('livres_delete', {'id': livre.id}) }}"onclick="return confirm('Etes-vous sûr de vouloir supprimer cet personne?')"  ><button type="submit" class="btn btn-danger btn-sm" 
+         onclick="return confirmation()"><i class="bi bi-trash-fill"></i></button></a> 
+          </div>
+      </td> 
+  </tr> 
+ {% endfor %}
+</table>   
+</div>
+{% endblock %}

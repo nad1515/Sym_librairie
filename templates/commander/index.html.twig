@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des commandes!{% endblock %}
+
+{% block body %}
+ 
+<div class= "container    ">
+  <h1 class=" text-aligne text-center"> Liste des commandes </h1>
+     <a href= "{{path('commander_add') }}" > <button class="btn btn-primary mx-2 mb-2">{{ ' Ajouter commande' }}</button></a>  
+<table class=" table table-bordered  " >
+  <thead>
+    <tr>
+   
+        <th class="able-danger">Date_achat</th>
+        <th class="able-danger">Prix_achat</th>
+        <th class="able-danger">Nbr_exemplaires</th>
+        <th class="able-danger">Code_fournisseur</th>
+        <th class="able-danger">Raison_sociale</th>
+        <th class="able-danger">Pays</th>
+        <th class="able-danger">Titre_livre</th>
+        <th class="able-danger">Theme_livre</th>
+        <th class="able-danger">Nom_auteur</th>
+        <th class="able-danger">Prenom_auteur</th>
+        <th class="able-danger">Editeur</th>
+         <th class="able-danger">idUtilisateur</th>   
+         <th class="able-danger">Action</th>  
+        
+   </tr>
+  </thead>
+     {% for commande in commandes %} 
+    <tr>
+   {{ dump(commande) }}
+
+        <td> {{commande.getDateAchat()|date('Y-m-d') }} </td>  
+        <td> {{commande.getPrixAchat() }} </td> 
+        <td> {{commande.getNbrExemplaires() }} </td> 
+         <td> {{commande.getIdLivre().getTitreLivre() }} </td> 
+         <td> {{commande.getIdLivre().getThemelivre() }} </td> 
+         <td> {{commande.getIdLivre().getNomauteur() }} </td> 
+         <td> {{commande.getIdLivre().getPrenomauteur() }} </td> 
+         <td> {{commande.getIdLivre().Editeur() }} </td> 
+         <td> {{commande.getIdfournisseur().getCodefournisseur() }} </td> 
+         <td> {{commande.getIdfournisseur().getRaisonsociale() }} </td> 
+         <td> {{commande.getIdfournisseur().getPays() }} </td>  
+         
+           <td> {{commande.getIdUtilisateur().getPrenom()}} </td>    
+    
+     <td>
+      <div class="d-flex flex-row">
+        <a href= "{{path('commander_edit',{'id':commande.id}) }}" ><button type="update" class="btn btn-warning btn-sm me-3"><i class="bi bi-pencil-fill"></i></button></a>
+         <a href="{{ path('commander_delete', {'id': commande.id}) }}"onclick="return confirm('Etes-vous sûr de vouloir supprimer cet personne?')"  ><button type="submit" class="btn btn-danger btn-sm" 
+         onclick="return confirmation()"><i class="bi bi-trash-fill"></i></button></a> 
+          </div>
+      </td> 
+  </tr> 
+ {% endfor %}
+</table>   
+</div>
+{% endblock %}
