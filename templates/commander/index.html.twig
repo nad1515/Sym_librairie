@@ -29,7 +29,7 @@
   </thead>
      {% for commande in commandes %} 
     <tr>
-   {{ dump(commande) }}
+   {# {{ dump(commande) }} #}
 
         <td> {{commande.getDateAchat()|date('Y-m-d') }} </td>  
         <td> {{commande.getPrixAchat() }} </td> 
