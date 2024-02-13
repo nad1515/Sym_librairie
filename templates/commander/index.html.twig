@@ -4,7 +4,7 @@
 
 {% block body %}
  
-<div class= "container    ">
+<div class= "container  mx-1  ">
   <h1 class=" text-aligne text-center"> Liste des commandes </h1>
      <a href= "{{path('commander_add') }}" > <button class="btn btn-primary mx-2 mb-2">{{ ' Ajouter commande' }}</button></a>  
 <table class=" table table-bordered  " >
@@ -27,7 +27,8 @@
         
    </tr>
   </thead>
-     {% for commande in commandes %} 
+  
+           {% for commande in commandes %} 
     <tr>
    {# {{ dump(commande) }} #}
 
@@ -54,6 +55,6 @@
       </td> 
   </tr> 
  {% endfor %}
-</table>   
+ </table>   
 </div>
 {% endblock %}

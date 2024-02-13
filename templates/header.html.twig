@@ -8,49 +8,55 @@
         <span class="navbar-toggler-icon"></span>
         </button>
     
-     {# <div class="collapse navbar-collapse " id="navbarSupportedContent">
-          <a class="nav-link dropdown-toggle  " href="/livres" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Livres
-          </a>
-          {# <ul class="dropdown-menu">
-          <li><a href="/livres">Tous les livres</a></li>
-            <li><a class="dropdown-item" href="{{path('app_livres') }}">par_auteur</a></li>
-            <li><a class="dropdown-item" href="{{path('app_livres') }}">par_editeur</a></li>
-            <li><a class="dropdown-item" href="{{path('app_livres') }}">par_titre</a></li>
-          </ul> #}
-           {# <a class="nav-link dropdown-toggle" href="/fournisseurs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Fournisseurs
-          </a> #}
-          {# <ul class="dropdown-menu">
-          <li><a  href="">Tous les Fournisseurs</a></li>
-            <li><a class="dropdown-item" href="">par_raison_sociale</a></li>
-            <li><a class="dropdown-item" href="">par_localité</a></li>
-            <li><a class="dropdown-item" href="">par_pays</a></li>
-          </ul> #}
-          {# <a class="nav-link dropdown-toggle" href="/commander" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Commandes
-          </a> #}
-          {# <ul class="dropdown-menu">
-          <li><a  href="">Toutes les commandes</a></li>
-            <li><a class="dropdown-item" href="">par_date</a></li>
-            <li><a class="dropdown-item" href="">par_fournisseur</a></li>
-            <li><a class="dropdown-item" href="">par_editeur</a></li>
-          </ul>   #}
-    {# </div>  #}
-      <div class="collapse navbar-collapse ms-3 " id="navbarSupportedContent" >
+     <div class="collapse navbar-collapse " id="">
+       <div> 
+            <a class="nav-link dropdown-toggle  " href="/livres" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Livres
+            </a>
+            <ul class="dropdown-menu">
+            <li><a href="/livres">Tous les livres</a></li>
+            <li><a class="dropdown-item" href="/livres/auteur">par_auteur</a></li>
+            <li><a class="dropdown-item" href="/livres">par_editeur</a></li>
+            <li><a class="dropdown-item" href="/livres">par_titre</a></li>
+            </ul> 
+        </div>
+         <div> 
+            <a class="nav-link dropdown-toggle" href="/fournisseurs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Fournisseurs
+            </a> 
+            <ul class="dropdown-menu">
+            <li><a  href="/fournisseurs">Tous les Fournisseurs</a></li>
+            <li><a class="dropdown-item" href="/fournisseurs">par_raison_sociale</a></li>
+            <li><a class="dropdown-item" href="/fournisseurs">par_localité</a></li>
+            <li><a class="dropdown-item" href="/fournisseurs">par_pays</a></li>
+            </ul>
+          </div> 
+           <div> 
+            <a class="nav-link dropdown-toggle" href="/commander" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Commandes
+            </a> 
+            <ul class="dropdown-menu">
+            <li><a  href="/commander">Toutes les commandes</a></li>
+            <li><a class="dropdown-item" href="commander">par_date</a></li>
+            <li><a class="dropdown-item" href="commander">par_fournisseur</a></li>
+            <li><a class="dropdown-item" href="commander">par_editeur</a></li>
+            </ul> 
+          </div>  
+       </div> 
+        {# <div class="collapse navbar-collapse ms-3 " id="navbarSupportedContent" >
           
           <a href="/livres" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover m-4">Livres</a>
           <a href="/fournisseurs" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover m-4">Fournisseurs</a>
           <a href="/commander" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover m-4">Commandes</a>
          
         
-        </div>
+        </div> #}
          
-    <div class="admin-badge"><?= $_SESSION['nom'] ?></div>
+    <div class="admin-badge"><?= $_SESSION['nom'] ?></div> 
 
-    
-    <a href="/home" class="btn btn-danger m-3">Deconnexion</a>
-     
+     <div>
+          <a href="/home" class="btn btn-danger m-3">Deconnexion</a>
+     </div> 
   </div>
 </nav>
 

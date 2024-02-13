@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Livres par Nom de l'auteur!{% endblock %}
+
+{% block body %}
+ 
+<div class= "container mx-1   ">
+  <table>
+    <thead>
+      <tr>
+      <th class="able-danger">ISBN </th> 
+      <th class="able-danger">Titre_livre </th>
+      <th class="able-danger"> Theme_livre</th>
+      <th class="able-danger">Nbr_pages_livre</th>
+      <th class="able-danger">Format_livre</th>
+      <th class="able-danger">Nom_auteur</th>
+      <th class="able-danger">Prenom_auteur</th>
+      <th class="able-danger">Editeur</th>
+      <th class="able-danger">Annee_edition</th>
+      <th class="able-danger">Prix_vente</th>
+      <th class="able-danger">Langue_livre</th>
+    
+    </tr>
+      
+    </thead>
+      <tbody>
+          {# {{dump(livre)}} #}
+          {% for livre in livres %}
+        <tr>
+          <td> {{livre.getISBN() }} </td> 
+          <td> {{livre.getTitrelivre()}} </td>
+          <td> {{livre.getThemelivre()}} </td>
+          <td> {{livre.getNbrpageslivre()}} </td>
+          <td> {{livre.getFormatlivre()}} </td>
+          <td> {{livre.getNomauteur()}} </td>
+          <td> {{livre.getPrenomauteur()}} </td>
+          <td> {{livre.getEditeur()}} </td>
+          <td> {{livre.getAnneeedition()}} </td>
+          <td> {{livre.getPrixvente()}} </td>
+          <td> {{livre.getLanguelivre()}} </td>
+            
+            
+        </tr> 
+        {% endfor %}
+    </tbody>
+  </table>   
+</div>
+{% endblock %}
