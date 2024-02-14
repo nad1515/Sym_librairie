@@ -1,0 +1,63 @@
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Liste des Livres par Titre!{% endblock %}
+
+{% block body %}
+ 
+<div class= "container mx-1   ">
+  <h1 class=" text-aligne text-center"> Liste des Livres par Titre </h1>
+   
+<table class=" table table-bordered  " >
+  <thead>
+    <tr>
+    <th class="able-danger">ISBN </th> 
+    <th class="able-danger">Titre_livre </th>
+    <th class="able-danger"> Theme_livre</th>
+    <th class="able-danger">Nbr_pages_livre</th>
+    <th class="able-danger">Format_livre</th>
+    <th class="able-danger">Nom_auteur</th>
+    <th class="able-danger">Prenom_auteur</th>
+    <th class="able-danger">Editeur</th>
+    <th class="able-danger">Annee_edition</th>
+    <th class="able-danger">Prix_vente</th>
+    <th class="able-danger">Langue_livre</th>
+    
+   </tr>
+  </thead>
+    {{dump(livres)}}
+    <tr>
+    <td> {{livres.getISBN() }} </td> 
+    <td> {{livres.getTitrelivre()}} </td>
+    <td> {{livres.getThemelivre()}} </td>
+     <td> {{livres.getNbrpageslivre()}} </td>
+     <td> {{livres.getFormatlivre()}} </td>
+     <td> {{livres.getNomauteur()}} </td>
+     <td> {{livres.getPrenomauteur()}} </td>
+     <td> {{livres.getEditeur()}} </td>
+     <td> {{livres.getAnneeedition()}} </td>
+     <td> {{livres.getPrixvente()}} </td>
+     <td> {{livres.getLanguelivre()}} </td>
+     <td>
+     
+  </tr> 
+ 
+</table>   
+</div>
+{% endblock %} #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Informations sur le livre{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Informations sur le livre</h1>
+    <ul>
+        <li><strong>ISBN:</strong> {{ livre.getISBN() }}</li>
+        <li><strong>Titre:</strong> {{ livre.getTitrelivre() }}</li>
+        <li><strong>Thème:</strong> {{ livre.getThemelivre() }}</li>
+        <li><strong>Nombre de pages:</strong> {{ livre.getNbrpageslivre() }}</li>
+        <li><strong>Format:</strong> {{ livre.getFormatlivre() }}</li>
+        <!-- Ajoutez d'autres propriétés du livre que vous souhaitez afficher -->
+    </ul>
+</div>
+{% endblock %}

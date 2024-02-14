@@ -1,20 +1,29 @@
 <?php
 
-namespace App\Controller;
+// namespace App\Controller;
  
-use App\Entity\Livres;
-use App\Form\LivresType;
-use App\Repository\LivresRepository;
+// use App\Entity\Livres;
+// use App\Form\LivresType;
+// use App\Repository\LivresRepository;
+// use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+// use Symfony\Component\HttpFoundation\Response;
+// use Symfony\Component\Routing\Annotation\Route;
+// //  use Symfony\Component\BrowserKit\Request;
+// use Symfony\Component\HttpFoundation\Request;
+// use Doctrine\ORM\EntityManagerInterface;
+// use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
+namespace App\Controller;
+
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-//  use Symfony\Component\BrowserKit\Request;
+use App\Repository\LivresRepository;
+use App\Form\LivresType;
+use App\Entity\Livres;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-// use Symfony\Component\Routing\Annotation\Route;
-
-
 
 
 #[Route('/livres')]
@@ -78,6 +87,7 @@ class LivresController extends AbstractController
   ]);
 }
 
+// ...............choix du livre par auteur..............................
 
 // #[Route('/auteur', name: 'livres_auteur', methods:['GET','POST'])]
 // public function livres_auteur(Request $request, LivresRepository $livresRepository, EntityManagerInterface $entityManager): Response
@@ -161,10 +171,10 @@ public function livres_auteur( Request $request, LivresRepository $livresReposit
 
     // Créer le formulaire
     $form = $this->createFormBuilder()
-        ->add('Nom_auteur', ChoiceType::class, [
+        ->add('auteur', ChoiceType::class, [
             'choices' => $livres, // Utiliser les noms d'auteur comme choix
-            'choice_label' => 'Nom_auteur',
-            'choice_value' => 'id',
+            'choice_label' => 'Nomauteur',
+            'choice_value' => 'Nomauteur',
              'placeholder' => 'Choisir un auteur', 
              'required' => false, // Rendre le champ facultatif
              'multiple' => false
@@ -174,21 +184,88 @@ public function livres_auteur( Request $request, LivresRepository $livresReposit
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
-        $auteurchoisis = $form->get('Nom_auteur')->getData();
-        $IdAuteur = $auteurchoisis->getId();
-
+      
+        $auteurchoisis = $form->get('auteur')->getData();
+        $NomAuteur = $auteurchoisis->getNomAuteur();
         return $this->render('livres/auteurinfos.html.twig', [
-          'livres' => $livresRepository->find($IdAuteur),
+        //  'livres' => $livresRepository->findBy(['Nom_auteur' => $NomAuteur]),
           
-        ]);
-    }
-   
-
-    return $this->render('livres/auteur.html.twig', [
+      ]);
+     }
+    //  else {
+    //   dump($form->getErrors());                   
+    //  }
+      return $this->render('livres/auteur.html.twig', [
         'form' => $form->createView(),
       
   
     ]);
 }
+#[Route('/titre', name: 'livres_titre', methods: ['GET', 'POST'])]
+        public function livres_titre(Request $request, LivresRepository $livresRepository, EntityManagerInterface $entityManager): Response
+        {
+            $livres = $livresRepository->findAll();
+            $form = $this->createFormBuilder()
+                    ->add('Titre', ChoiceType::class, [
+                        'choices' => $livres, 
+                        'choice_label' => 'titreLivre',
+                        'choice_value' => 'id',
+                        'placeholder' => 'Choisir un titre', 
+                        'required' => false, 
+                    ])
+                    ->getForm();
+            $form->handleRequest($request);
+            if ($form->isSubmitted()) {
+              if ($form->isValid()) {
+                  // Le formulaire est soumis et valide
+                  // Effectuez ici les actions nécessaires
+          
+                  // Par exemple, récupérez l'ID du livre sélectionné
+                  $livreId = $form->get('Titre')->getData();
+                  
+                  // Utilisez l'ID pour récupérer les informations du livre depuis le repository
+                  $livreSelectionne = $livresRepository->find($livreId);
+                  
+                  // Affichez les informations du livre dans un autre template Twig
+                  return $this->render('livres/titreresult.html.twig', [
+                      'livre' => $livreSelectionne,
+                  ]);
+              } else {
+                  // Le formulaire est soumis mais non valide
+                  // Traitez les erreurs de validation ici, si nécessaire
+          
+                  // Par exemple, récupérez les erreurs de validation
+                  // $errors = $form->getErrors(true, false);
+                  dump($form->getErrors());  
+                  // Traitez les erreurs, par exemple en les affichant ou en les enregistrant dans un journal
+              }
+          } else {
+              // Le formulaire n'a pas encore été soumis
+              // Vous pouvez ignorer cette condition si vous ne devez pas traiter le formulaire non soumis différemment
+          
+              // Créez simplement le formulaire et affichez-le dans la vue Twig comme d'habitude
+              // Cela peut être fait en dehors de la condition if
+          }
+          
+          // Si vous avez besoin d'afficher le formulaire dans tous les cas, y compris quand il n'est pas encore soumis
+          // Vous pouvez placer cette partie du code à l'extérieur de la condition if
+          return $this->render('livres/titre.html.twig', [
+              'form' => $form->createView(),
+          ]);
+                    
+          //   if ($form->isSubmitted() && $form->isValid()) {
+          //       $livreId = $form->get('Titre')->getData();
+          //       // $livreId = $livreSelectionne->getId();
+          //       $livreSelectionne= $livresRepository->find($livreId);
+          //       return $this->render('livres/titreinfos.html.twig', [
+          //           'livre' => $livreSelectionne,
+          //       ]);
+          //   }
+          //   return $this->render('livres/titre.html.twig', [
+          //       'form' => $form->createView(),
+          //   ]);
+          // }
+
 }
 
+}

@@ -3,7 +3,7 @@
 {% block title %}Liste des Livres par Nom de l'auteur!{% endblock %}
 
 {% block body %}
- 
+ {# {{dump(livres)}}  #}
 <div class= "container mx-1   ">
   <table>
     <thead>
@@ -24,11 +24,11 @@
       
     </thead>
       <tbody>
-          {# {{dump(livre)}} #}
-          {% for livre in livres %}
+          
+          
         <tr>
-          <td> {{livre.getISBN() }} </td> 
-          <td> {{livre.getTitrelivre()}} </td>
+            {# <td> {{livres.getISBN() }} </td>  #}
+         {# <td> {{livre.getTitrelivre()}} </td>
           <td> {{livre.getThemelivre()}} </td>
           <td> {{livre.getNbrpageslivre()}} </td>
           <td> {{livre.getFormatlivre()}} </td>
@@ -38,10 +38,10 @@
           <td> {{livre.getAnneeedition()}} </td>
           <td> {{livre.getPrixvente()}} </td>
           <td> {{livre.getLanguelivre()}} </td>
-            
-            
+             
+             #}
         </tr> 
-        {% endfor %}
+      
     </tbody>
   </table>   
 </div>
