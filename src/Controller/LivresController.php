@@ -1,17 +1,5 @@
 <?php
 
-// namespace App\Controller;
- 
-// use App\Entity\Livres;
-// use App\Form\LivresType;
-// use App\Repository\LivresRepository;
-// use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-// use Symfony\Component\HttpFoundation\Response;
-// use Symfony\Component\Routing\Annotation\Route;
-// //  use Symfony\Component\BrowserKit\Request;
-// use Symfony\Component\HttpFoundation\Request;
-// use Doctrine\ORM\EntityManagerInterface;
-// use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 namespace App\Controller;
 
@@ -40,7 +28,7 @@ class LivresController extends AbstractController
         ]);
     }
 
-    // ..............................suprimer un livre..................................
+    // ..............................suprimer un livre...............................................................................
 
     #[Route('/livres/{id}/delete', name: 'livres_delete')]
     public function delete( int $id, EntityManagerInterface $entityManager,  LivresRepository $livresRepository ): Response
@@ -53,7 +41,7 @@ class LivresController extends AbstractController
         return $this->redirectToRoute('app_livres');
     }
 
-// ...........................Mettre a jours un livre.........................
+// ...........................Mettre a jours un livre............................................................................
 
     #[Route('/livres{id}/edit', name: 'livres_edit',methods:['GET','POST'])]
     public function livres_edit(int $id, Request $request, LivresRepository $livresRepository, EntityManagerInterface $entityManager): Response
@@ -70,7 +58,7 @@ class LivresController extends AbstractController
       'form'=> $form, 'livre'=> $livresRepository->findAll(),
     ]);
   }
-// ............................ajouter un livre..........................
+// ............................ajouter un livre..............................................................................
 
   #[Route('/Add', name: 'livres_add',methods:['GET','POST'])]
   public function livres_add( Request $request, LivresRepository $livresRepository, EntityManagerInterface $entityManager): Response
@@ -90,7 +78,7 @@ class LivresController extends AbstractController
   ]);
 }
 
-// ...............choix du livre par auteur..............................
+// ...............choix du livre par auteur.............................................................................
 
 #[Route('/auteur', name: 'livres_auteur', methods:['GET','POST'])]
 public function livres_auteur( Request $request, LivresRepository $livresRepository, EntityManagerInterface $entityManager): Response
@@ -110,7 +98,7 @@ public function livres_auteur( Request $request, LivresRepository $livresReposit
         ])
        
         ->getForm();
- dd($form->get('auteur'));
+//  dd($form->get('auteur'));
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
@@ -118,26 +106,25 @@ public function livres_auteur( Request $request, LivresRepository $livresReposit
         $auteurchoisis = $form->get('auteur')->getData();
         $NomAuteur = $auteurchoisis->getNomAuteur();
         return $this->render('livres/auteurinfos.html.twig', [
-        //  'livres' => $livresRepository->findBy(['Nom_auteur' => $NomAuteur]),
+          'livres' => $livresRepository->findBy(['Nom_auteur' => $NomAuteur]),
           
       ]);
      }
-    //  else {
-    //   dump($form->getErrors());                   
-    //  }
+   
       return $this->render('livres/auteur.html.twig', [
         'form' => $form->createView(),
       
   
     ]);
 }
+// ................................une autre methode de choisir les livres par auteur sans cree form...........................
 
 // #[Route('/titre', name: 'livres_titre', methods: ['GET', 'POST'])]
 // public function livres_titre(Request $request, LivresRepository $livresRepository, EntityManagerInterface $entityManager): Response
 // {
 //     $livres = $livresRepository->findAll();
 //     $form = $this->createFormBuilder()
-//             ->add('Titre', ChoiceType::class, [
+//             ->add('titre', ChoiceType::class, [
 //                 'choices' => $livres, 
 //                 'choice_label' => 'titreLivre',
 //                 'choice_value' => 'id',
@@ -148,10 +135,10 @@ public function livres_auteur( Request $request, LivresRepository $livresReposit
 //     $form->handleRequest($request);
             
 //     if ($form->isSubmitted() && $form->isValid()) {
-//         $livreId = $form->get('Titre')->getData();
+//         $livreId = $form->get('titre')->getData();
 //         $livreSelectionne= $livresRepository->find($livreId);
 //         return $this->render('livres/titreresult.html.twig', [
-//             'livre' => $livreSelectionne,
+//             'livres' => $livreSelectionne,
 //         ]);
 //     }
 
@@ -160,7 +147,7 @@ public function livres_auteur( Request $request, LivresRepository $livresReposit
 //     ]);
 // }
 
-
+// ..............................formulaire par titre de livre......................................
 #[Route('/forme', name: 'forme_livre')]
 public function forme(Request $request, EntityManagerInterface $entityManager): Response
 {
@@ -178,32 +165,74 @@ $entityManager->flush();
 return $this->render('livre/formulaire.html.twig', [
 	'form' => $form->createView()
 	]);
-
-
-
 }
-#[Route('/titre', name: 'livres_Titre', methods: ['GET',
-'POST'])]
+//............................choisir les livres par titre...........................................................}
+
+#[Route('/titre', name: 'livres_Titre', methods: ['GET','POST'])]
 public function livres_Titre(Request $request, LivresRepository $LivresRepo, EntityManagerInterface
 $entityManager)
     {
        
         $form = $this->createForm(LivresTitreType::class, null);
-        dd($form->get('titrelivre'));
+        // dd($form->get('titrelivre'));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $titreSelectionne = $form->get('titrelivre')->getData();
-               
+          $livres=$LivresRepo->findBy(['Titre_livre'=> $titreSelectionne]); 
+          
+           
          return $this->render('livres/titreresult.html.twig',[
                    
-         'livres' =>$LivresRepo->findBy(['Titre_livre'=> $titreSelectionne]),
+         'livres' =>$livres,
                 ]);
             }
+
         return $this->render('livres/titre.html.twig', [
             'form' => $form->createView(),
         ]);
     }
+
+///..................afficher les livres par editeur................................................................
+
+#[Route('/editeur', name: 'livres_editeur', methods:['GET','POST'])]
+public function livres_editeur( Request $request, LivresRepository $livresRepository, EntityManagerInterface $entityManager): Response
+{
+    $livres = $livresRepository->findAll(); // Récupérer tous les livres
+
+    // Créer le formulaire
+    $form = $this->createFormBuilder()
+        ->add('livrediteur', ChoiceType::class, [
+            'choices' => $livres, // Utiliser les noms d'auteur comme choix
+            'choice_label' => 'editeur',
+            'choice_value' => 'editeur',
+             'placeholder' => 'Choisir un editeur', 
+             'required' => false, // Rendre le champ facultatif
+             'multiple' => false  //le chois de l'editeur n'est pas multiple
+
+             
+        ])
+       
+        ->getForm();
+//  dd($form->get('auteur'));
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+      
+        $editeurchoisis = $form->get('livrediteur')->getData();
+        $editeur = $editeurchoisis->getEditeur();
+        return $this->render('livres/editeurresult.html.twig', [
+          'livres' => $livresRepository->findBy(['Editeur' => $editeur]),
+          
+      ]);
+     }
+   
+      return $this->render('livres/editeur.html.twig', [
+        'form' => $form->createView(),
+      
+  
+    ]);
+}
 
 }
 

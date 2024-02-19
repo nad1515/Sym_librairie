@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 
 
 // .......................afficher tous les fournisseurs.....................
@@ -74,7 +76,122 @@ class FournisseursController extends AbstractController
     'form'=> $form->createView() ,
   ]);
 }
+//....................................afficher fournisseur par raison sociele.............................
 
-    
+#[Route('/raisonsociale', name: 'fournisseur_raisonsociale', methods:['GET','POST'])]
+public function fournisseur_raisonsociale( Request $request, FournisseursRepository $fournisseursRepository, EntityManagerInterface $entityManager): Response
+{
+    $fournisseurs = $fournisseursRepository->findAll(); // Récupérer tous les fournisseurs
+
+    // Créer le formulaire
+    $form = $this->createFormBuilder()
+        ->add('fourraisonsociale', ChoiceType::class, [
+            'choices' => $fournisseurs, // Utiliser les noms de fournisseur comme choix
+            'choice_label' => 'raisonsociale',
+            'choice_value' => 'raisonsociale',
+             'placeholder' => 'Choisir une raison sociale', 
+             'required' => false, // Rendre le champ facultatif
+             'multiple' => false  //le chois de l'editeur n'est pas multiple
+
+             
+        ])
+       
+        ->getForm();
+//  dd($form->get('raisonsociale'));
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+      
+      $raisonchoisis = $form->get('fourraisonsociale')->getData();
+        $raisonSociale = $raisonchoisis->getRaisonSociale();
+        return $this->render('fournisseurs/raisonresult.html.twig', [
+          'fournisseurs' => $fournisseursRepository->findBy(['Raison_sociale' => $raisonSociale]),
+          
+      ]);
+     }
+   
+      return $this->render('fournisseurs/raison.html.twig', [
+        'form' => $form->createView(),
+      
+  
+    ]);
+}
+#[Route('/localite', name: 'fournisseur_localite', methods:['GET','POST'])]
+public function fournisseur_localite( Request $request, FournisseursRepository $fournisseursRepository, EntityManagerInterface $entityManager): Response
+{
+    $fournisseurs = $fournisseursRepository->findAll(); // Récupérer tous les fournisseurs
+
+    // Créer le formulaire
+    $form = $this->createFormBuilder()
+        ->add('fourlocalite', ChoiceType::class, [
+            'choices' => $fournisseurs, // Utiliser les noms de fournisseur comme choix
+            'choice_label' => 'localite',
+            'choice_value' => 'localite',
+             'placeholder' => 'Choisir une localite', 
+             'required' => false, // Rendre le champ facultatif
+             'multiple' => false  //le chois de l'editeur n'est pas multiple
+
+             
+        ])
+       
+        ->getForm();
+//  dd($form->get('auteur'));
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+      
+      $localitechoisis = $form->get('fourlocalite')->getData();
+        $localite = $localitechoisis->getLocalite();
+        return $this->render('fournisseurs/localiteresult.html.twig', [
+          'fournisseurs' => $fournisseursRepository->findBy(['Localite' => $localite]),
+          
+      ]);
+     }
+   
+      return $this->render('fournisseurs/localite.html.twig', [
+        'form' => $form->createView(),
+      
+  
+    ]);
+}
+// ...........................choix du fournisseur par Pays............................................
+#[Route('/pays', name: 'fournisseur_pays', methods:['GET','POST'])]
+public function fournisseur_pays( Request $request, FournisseursRepository $fournisseursRepository, EntityManagerInterface $entityManager): Response
+{
+    $fournisseurs = $fournisseursRepository->findAll(); // Récupérer tous les fournisseurs
+  
+
+    // Créer le formulaire
+    $form = $this->createFormBuilder()
+        ->add('fourpays', ChoiceType::class, [
+            'choices' => $fournisseurs, // Utiliser les noms de fournisseur comme choix
+            'choice_label' => 'pays',
+            'choice_value' => 'pays',
+             'placeholder' => 'Choisir un pays', 
+             'required' => false, // Rendre le champ facultatif
+             'multiple' => false  //le chois de l'editeur n'est pas multiple
+          
+        ])
+       
+        ->getForm();
+  
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+      
+      $payschoisis = $form->get('fourpays')->getData();
+        $pays = $payschoisis->getPays();
+        return $this->render('fournisseurs/paysresult.html.twig', [
+          'fournisseurs' => $fournisseursRepository->findBy(['Pays' => $pays]),
+          // dd(('fournisseurs'));
+      ]);
+     }
+   
+      return $this->render('fournisseurs/pays.html.twig', [
+        'form' => $form->createView(),
+      
+  
+    ]);
+}
 
 }

@@ -1,9 +1,20 @@
-{% block body %}
-{{ form_start(form) }}
 
- 
 
-<button type="submit" name="save_button" class="btn btn-primary">Valider</button>
+    {% extends 'header.html.twig' %}  
 
-{{ form_end(form) }}
+{% block title %}
+  livre par auteur
 {% endblock %}
+
+{% block body %}
+<h1  class=" text-aligne text-center"> livre par auteur </h1>
+
+    {{ form_start(form) }}
+<div class ="mx-auto container  ml-5"> 
+    {{ form_widget(form) }} 
+
+       <button type="submit"  name="save_button" class="btn btn-primary  mt-4">{{ 'Valider' }}</button>  
+   </div>
+    {{ form_end(form) }}
+ 
+{% endblock %} 

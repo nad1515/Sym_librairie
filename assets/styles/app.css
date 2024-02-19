@@ -1,3 +1,67 @@
+
+*{
+    box-sizing: border-box;
+}
 body {
-    background-color: skyblue;
+    /* background-color: skyblue; */
+    background-size: 150%; 
+}
+main{
+    width: 100%;
+    min-height: 100vh;
+    background-image: url('/img/Librairie.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+    overflow: scroll;
+
+}
+
+
+nav-link{
+    font-size: 1.5rem;
+}
+.required{
+}
+h1{
+    background-color: rgba(127, 255, 212, 0.564);
+}
+.forme{
+   width:50%;
+   margin:auto;
+   border: 1px solid rgba(143, 143, 154, 0.861);
+   background-color: rgba(166, 164, 161, 0.618);
+   backdrop-filter: blur(0.2rem);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-top: 2rem;
+   padding: 3rem;
+   flex-direction: column;
+   border-radius: 1rem;
+
+}
+#commander div {
+    margin-bottom: 2rem;
+    width: 100%;
+}
+#commander div input, select {
+    width: 50%;
+}
+#commander div label {
+    margin-right: 1rem;
+    min-width: 130px;
+    background-color: rgba(250, 235, 215, 0.772);
+    text-align: center;
+
+}
+
+footer {
+    width: 100%;
+    text-align: center; 
+    margin-top: auto;
+    padding: 2rem;
+    color: white;
+    background-color: rgba(80, 78, 78, 0.829);
+   
 }

@@ -9,10 +9,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
+#[Route('/commander')]
 class CommanderController extends AbstractController
 {
-    #[Route('/commander', name: 'app_commander',methods:['GET'])]
+    #[Route('/', name: 'app_commander',methods:['GET'])]
     public function index(CommanderRepository $commanderRepository): Response
     {
         return $this->render('commander/index.html.twig', [
@@ -68,6 +70,124 @@ return $this->render('commander/add.html.twig', [
   'form'=> $form->createView() ,
 ]);
 }
+
+
+//........................commande par date..............................................
+#[Route('/pardate', name: 'commande_date', methods:['GET','POST'])]
+public function commande_date(Request $request, CommanderRepository $commanderRepository, EntityManagerInterface $entityManager): Response
+{
+     // Récupérer toutes les commandes avec les jointures
+     $commande = $commanderRepository->findAllCommandesWithJointures();
+     $datesAchat = [];
+     foreach ($commande as $commandedate) {
+         $dateAchat = $commandedate->getDateAchat()->format('Y-m-d'); // Formatage de la date
+         $datesAchat[$dateAchat] = $dateAchat; // Utilisation de la date comme clé et comme valeur
+     }
+
+//     ........ Créer le formulaire avec les dates d'achat comme choix..............................
+
+    $form = $this->createFormBuilder()
+        ->add('commanded', ChoiceType::class, [
+           'choices' => $datesAchat,
+           'placeholder' => 'Choisir une date',
+            'required' => false,  
+            'multiple' => false 
+        ])
+        ->getForm();
+
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $dateChoisie = $form->get('commanded')->getData();
+        $dateChoisie = new \DateTimeImmutable($dateChoisie);
+        $commandesDate = $commanderRepository->findBy(['Date_achat' => $dateChoisie]);
+        
+        return $this->render('commander/dateresult.html.twig', [
+            'commandes' => $commandesDate,
+        ]);
+    }
+
+    return $this->render('commander/date.html.twig', [
+        'form' => $form->createView(),
+    ]);
+}
+#[Route('/fournisseur', name: 'commande_fournisseur', methods:['GET','POST'])]
+public function ommande_fournisseur( Request $request, CommanderRepository $commanderRepository, EntityManagerInterface $entityManager): Response
+{
+        $commande = $commanderRepository->findAllCommandesWithJointures(); // Récupérer tous les fournisseurs
+        $form = $this->createFormBuilder()
+            ->add('commandefour', ChoiceType::class, [
+                'choices' => $commande, // Utiliser les noms de fournisseur comme choix
+                'choice_label'=> 'Idfournisseur.Raisonsociale',
+                'choice_value'=> 'Idfournisseur.id',
+                'placeholder' => 'Choisir un fournisseur', 
+                'required' => false, 
+                'multiple' => false  
+              
+            ])
+          
+            ->getForm();
+    $form->handleRequest($request);
+   
+    if ($form->isSubmitted() && $form->isValid()) {
+        $raisonchoisis = $form->get('commandefour')->getData();
+        $raisonselect = $raisonchoisis->getIdFournisseur();
+        
+    return $this->render('commander/com_raisonresult.html.twig', [
+      'commandes'=>$commanderRepository->findBy(['Id_fournisseur' => $raisonselect]) ,
+          
+      ]);
+     }
+    return $this->render('commander/com_raison.html.twig', [          
+           'form' => $form->createView(),
+            
+        
+    
+      ]);
+  }
+
+
+//.................................afficher commande par editeur.........................................
+#[Route('/editeur', name: 'commande_editeur', methods:['GET','POST'])]
+public function commande_editeur( Request $request, CommanderRepository $commanderRepository, EntityManagerInterface $entityManager): Response
+{
+    $commande = $commanderRepository->findAllCommandesWithJointures(); // Récupérer tous les fournisseurs
+  
+    $form = $this->createFormBuilder()
+        ->add('commandeediteur', ChoiceType::class, [
+            'choices' => $commande, // Utiliser les noms de fournisseur comme choix
+            'choice_label' => 'IdLivre.Editeur',
+            'choice_value' => 'IdLivre.id',
+             'placeholder' => 'Choisir un editeur', 
+             'required' => false, 
+             'multiple' => false  
+          
+        ])
+       
+        ->getForm();
+
+    $form->handleRequest($request);
+   
+    if ($form->isSubmitted() && $form->isValid()) {
+      
+      $editeurchoisis = $form->get('commandeediteur')->getData();
+        $editeurselect = $editeurchoisis->getIdLivre();
+        
+        return $this->render('commander/com_editeurresult.html.twig', [
+                    'commandes'=> $commanderRepository->findBy(['Id_Livre' => $editeurselect]) ,
+          
+      ]);
+     }
+   
+      return $this->render('commander/com_editeur.html.twig', [
+        'form' => $form->createView(),
+        
+  
+    ]);
+}
+
+
+
 
 }
 

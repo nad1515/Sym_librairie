@@ -4,40 +4,41 @@
 
 {% block body %}
  
-<div class= "container mx-1   ">
+ 
+<div class= " w-75 mx-auto container  mx-1  ">
   <h1 class=" text-aligne text-center"> Liste des fournisseurs </h1>
-   <a href= "{{path('fournisseurs_add') }}" > <button class="btn btn-primary mx-2 mb-2">{{ ' Ajouter' }}</button></a>
-<table class=" table table-bordered  " >
+     <a href= "{{path('commander_add') }}" > <button class="btn btn-primary mx-2 mb-2">{{ ' Ajouter commande' }}</button></a>  
+  <table class="    table table-striped  " >
   <thead>
     <tr>
-    <th class="able-danger">Codefournisseur </th> 
-    <th class="able-danger">Raison_sociale</th>
-    <th class="able-danger"> Rue_fournisseur</th>
-    <th class="able-danger">Code_postal</th>
-    <th class="able-danger">Localite</th>
-    <th class="able-danger">Pays</th>
-    <th class="able-danger">Tel_fournisseur</th>
-    <th class="able-danger">Url_fournisseur</th>
-    <th class="able-danger">Email_fournisseur</th>
-    <th class="able-danger">Fax_fournisseur</th>
-    <th class="able-danger">Action</th>
+    <th class="table-danger">Codefournisseur </th> 
+    <th class="table-danger">Raison_sociale</th>
+    <th class="table-danger"> Rue_fournisseur</th>
+    <th class="table-danger">Code_postal</th>
+    <th class="table-danger">Localite</th>
+    <th class="table-danger">Pays</th>
+    <th class="table-danger">Tel_fournisseur</th>
+    <th class="table-danger">Url_fournisseur</th>
+    <th class="table-danger">Email_fournisseur</th>
+    <th class="table-danger">Fax_fournisseur</th>
+    <th class="table-danger">Action</th>
  
    </tr>
   </thead>
     {% for fournisseur in fournisseurs %}
     <tr>
-    <td> {{fournisseur.getCodefournisseur() }} </td> 
-    <td> {{fournisseur.getRaisonsociale()}} </td>
-    <td> {{fournisseur.getRuefournisseur()}} </td>
-     <td> {{fournisseur.getCodepostal()}} </td>
-     <td> {{fournisseur.getLocalite()}} </td>
-     <td> {{fournisseur.getPays()}} </td>
-     <td> {{fournisseur.getTelfournisseur()}} </td>
-     <td> {{fournisseur.getUrlfournisseur()}} </td>
-     <td> {{fournisseur.getEmailfournisseur()}} </td>
-     <td> {{fournisseur.getFaxfournisseur()}} </td>
+    <td class="table-primary"> {{fournisseur.getCodefournisseur() }} </td> 
+    <td class="table-primary"> {{fournisseur.getRaisonsociale()}} </td>
+    <td class="table-primary"> {{fournisseur.getRuefournisseur()}} </td>
+     <td class="table-primary"> {{fournisseur.getCodepostal()}} </td>
+     <td class="table-primary"> {{fournisseur.getLocalite()}} </td>
+     <td class="table-primary" {{fournisseur.getPays()}} </td>
+     <td class="table-primary"> {{fournisseur.getTelfournisseur()}} </td>
+     <td class="table-primary"> {{fournisseur.getUrlfournisseur()}} </td>
+     <td class="table-primary"> {{fournisseur.getEmailfournisseur()}} </td>
+     <td class="table-primary"> {{fournisseur.getFaxfournisseur()}} </td>
     
-     <td>
+     <td class="table-primary">
       <div class="d-flex flex-row">
         <a href= "{{path('fournisseurs_edit',{'id':fournisseur.id}) }}" ><button type="update" class="btn btn-warning btn-sm me-3"><i class="bi bi-pencil-fill"></i></button></a>
          <a href="{{ path('fournisseurs_delete', {'id': fournisseur.id}) }}"onclick="return confirm('Etes-vous sûr de vouloir supprimer cet personne?')"  ><button type="submit" class="btn btn-danger btn-sm" 

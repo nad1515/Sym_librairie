@@ -4,40 +4,41 @@
 
 {% block body %}
  
-<div class= "container mx-1   ">
-  <h1 class=" text-aligne text-center"> Liste des Livres </h1>
-   <a href= "{{path('livres_add') }}" > <button class="btn btn-primary  mb-2">{{ ' Ajouter' }}</button></a>
-<table class=" table table-bordered  " >
+ 
+<div class= " w-75 mx-auto container  mx-1  ">
+  <h1 class=" text-aligne text-center"> Liste des livres </h1>
+     <a href= "{{path('commander_add') }}" > <button class="btn btn-primary mx-2 mb-2">{{ ' Ajouter commande' }}</button></a>  
+  <table class="table table-striped  " >
   <thead>
     <tr>
-    <th class="able-danger">ISBN </th> 
-    <th class="able-danger">Titre_livre </th>
-    <th class="able-danger"> Theme_livre</th>
-    <th class="able-danger">Nbr_pages_livre</th>
-    <th class="able-danger">Format_livre</th>
-    <th class="able-danger">Nom_auteur</th>
-    <th class="able-danger">Prenom_auteur</th>
-    <th class="able-danger">Editeur</th>
-    <th class="able-danger">Annee_edition</th>
-    <th class="able-danger">Prix_vente</th>
-    <th class="able-danger">Langue_livre</th>
-    <th class="able-danger">Actions</th>
+    <th class="table-danger">ISBN </th> 
+    <th class="table-danger">Titre_livre </th>
+    <th class="table-danger"> Theme_livre</th>
+    <th class="table-danger">Nbr_pages_livre</th>
+    <th class="table-danger">Format_livre</th>
+    <th class="table-danger">Nom_auteur</th>
+    <th class="table-danger">Prenom_auteur</th>
+    <th class="table-danger">Editeur</th>
+    <th class="table-danger">Annee_edition</th>
+    <th class="table-danger">Prix_vente</th>
+    <th class="table-danger">Langue_livre</th>
+    <th class="table-danger">Actions</th>
    </tr>
   </thead>
     {% for livre in livres %}
     <tr>
-    <td> {{livre.getISBN() }} </td> 
-    <td> {{livre.getTitrelivre()}} </td>
-    <td> {{livre.getThemelivre()}} </td>
-     <td> {{livre.getNbrpageslivre()}} </td>
-     <td> {{livre.getFormatlivre()}} </td>
-     <td> {{livre.getNomauteur()}} </td>
-     <td> {{livre.getPrenomauteur()}} </td>
-     <td> {{livre.getEditeur()}} </td>
-     <td> {{livre.getAnneeedition()}} </td>
-     <td> {{livre.getPrixvente()}} </td>
-     <td> {{livre.getLanguelivre()}} </td>
-     <td>
+    <td class="table-primary"> {{livre.getISBN() }} </td> 
+    <td class="table-primary"> {{livre.getTitrelivre()}} </td>
+    <td class="table-primary"> {{livre.getThemelivre()}} </td>
+     <td class="table-primary"> {{livre.getNbrpageslivre()}} </td>
+     <td class="table-primary"> {{livre.getFormatlivre()}} </td>
+     <td class="table-primary"> {{livre.getNomauteur()}} </td>
+     <td class="table-primary"> {{livre.getPrenomauteur()}} </td>
+     <td class="table-primary"> {{livre.getEditeur()}} </td>
+     <td class="table-primary"> {{livre.getAnneeedition()}} </td>
+     <td class="table-primary"> {{livre.getPrixvente()}} </td>
+     <td class="table-primary"> {{livre.getLanguelivre()}} </td>
+     <td class="table-primary">
       <div class="d-flex flex-row">
         <a href= "{{path('livres_edit',{'id':livre.id}) }}" ><button type="update" class="btn btn-warning btn-sm me-3"><i class="bi bi-pencil-fill"></i></button></a>
          <a href="{{ path('livres_delete', {'id': livre.id}) }}"onclick="return confirm('Etes-vous sûr de vouloir supprimer cet personne?')"  ><button type="submit" class="btn btn-danger btn-sm" 

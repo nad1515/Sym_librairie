@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}FOURNISSEURS{% endblock %}
+
+{% block body %}
+    <h1>Liste des fournisseurs par Raison Sociale</h1>
+
+    <table class='table table-bordered table-responsive-md'>
+        <tr>
+            <th class="table-danger">Codefournisseur </th> 
+            <th class="table-danger">Raison_sociale</th>
+            <th class="table-danger"> Rue_fournisseur</th>
+            <th class="table-danger">Code_postal</th>
+            <th class="table-danger">Localite</th>
+            <th class="table-danger">Pays</th>
+            <th class="table-danger">Tel_fournisseur</th>
+            <th class="table-danger">Url_fournisseur</th>
+            <th class="table-danger">Email_fournisseur</th>
+            <th class="table-danger">Fax_fournisseur</th>
+         
+        
+        </tr>
+       {% for fournisseur in fournisseurs %}
+       <tr>
+            <td class="table-primary"> {{fournisseur.getCodefournisseur() }} </td> 
+            <td class="table-primary"> {{fournisseur.getRaisonsociale()}} </td>
+            <td class="table-primary"> {{fournisseur.getRuefournisseur()}} </td>
+            <td class="table-primary"> {{fournisseur.getCodepostal()}} </td>
+            <td class="table-primary"> {{fournisseur.getLocalite()}} </td>
+            <td class="table-primary"> {{fournisseur.getPays()}} </td>
+            <td class="table-primary"> {{fournisseur.getTelfournisseur()}} </td>
+            <td class="table-primary"> {{fournisseur.getUrlfournisseur()}} </td>
+            <td class="table-primary"> {{fournisseur.getEmailfournisseur()}} </td>
+            <td class="table-primary"> {{fournisseur.getFaxfournisseur()}} </td>
+            
+                
+        </tr>
+    {% endfor %}
+  </table>   
+
+{% endblock %}

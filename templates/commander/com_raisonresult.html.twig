@@ -1,16 +1,10 @@
-{% extends 'base.html.twig' %}
+ {% extends 'base.html.twig' %}   
+ {% block body %}
+    <h1>Liste des commandes par Fournisseur</h1>
 
-{% block title %}Liste des commandes!{% endblock %}
-
-{% block body %}
- 
-<div class= " w-75 mx-auto container  mx-1  ">
-  <h1 class=" text-aligne text-center"> Liste des commandes </h1>
-     <a href= "{{path('commander_add') }}" > <button class="btn btn-primary mx-2 mb-2">{{ ' Ajouter commande' }}</button></a>  
-  <table class="    table table-striped  " >
-  <thead>
-    <tr>
-   
+    <table class='table table-bordered table-responsive-md'>
+        <tr>
+            
         <th class="table-danger">Date_achat</th>
         <th class="table-danger">Prix_achat</th>
         <th class="table-danger">Nbr_exemplaires</th>
@@ -23,15 +17,12 @@
         <th class="table-danger">Prenom_auteur</th>
         <th class="table-danger">Editeur</th>
          <th class="table-danger">idUtilisateur</th>   
-         <th class="table-danger">Action</th>  
-        
-   </tr>
-  </thead>
-  
-           {% for commande in commandes %} 
-    <tr>
-   {# {{ dump(commande) }} #}
 
+         
+        
+        </tr>
+        {% for commande in commandes %} 
+       <tr>
         <td class="table-primary"> {{commande.getDateAchat()|date('Y-m-d') }} </td>  
         <td class="table-primary"> {{commande.getPrixAchat() }} </td> 
         <td class="table-primary"> {{commande.getNbrExemplaires() }} </td> 
@@ -46,15 +37,10 @@
          
            <td class="table-primary"> {{commande.getIdUtilisateur().getPrenom()}} </td>    
     
-     <td class="table-primary">
-      <div class="d-flex flex-row">
-        <a href= "{{path('commander_edit',{'id':commande.id}) }}" ><button type="update" class="btn btn-warning btn-sm me-3"><i class="bi bi-pencil-fill"></i></button></a>
-         <a href="{{ path('commander_delete', {'id': commande.id}) }}"onclick="return confirm('Etes-vous sûr de vouloir supprimer cet personne?')"  ><button type="submit" class="btn btn-danger btn-sm" 
-         onclick="return confirmation()"><i class="bi bi-trash-fill"></i></button></a> 
-          </div>
-      </td> 
-  </tr> 
- {% endfor %}
- </table>   
-</div>
+            
+                
+        </tr>
+    {% endfor %}
+  </table>   
+
 {% endblock %}
