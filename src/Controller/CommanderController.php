@@ -87,7 +87,7 @@ public function commande_date(Request $request, CommanderRepository $commanderRe
 //     ........ Créer le formulaire avec les dates d'achat comme choix..............................
 
     $form = $this->createFormBuilder()
-        ->add('commanded', ChoiceType::class, [
+        ->add('date', ChoiceType::class, [
            'choices' => $datesAchat,
            'placeholder' => 'Choisir une date',
             'required' => false,  
@@ -98,7 +98,7 @@ public function commande_date(Request $request, CommanderRepository $commanderRe
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
-        $dateChoisie = $form->get('commanded')->getData();
+        $dateChoisie = $form->get('date')->getData();
         $dateChoisie = new \DateTimeImmutable($dateChoisie);
         $commandesDate = $commanderRepository->findBy(['Date_achat' => $dateChoisie]);
         
@@ -116,7 +116,7 @@ public function ommande_fournisseur( Request $request, CommanderRepository $comm
 {
         $commande = $commanderRepository->findAllCommandesWithJointures(); // Récupérer tous les fournisseurs
         $form = $this->createFormBuilder()
-            ->add('commandefour', ChoiceType::class, [
+            ->add('Raisonsociale', ChoiceType::class, [
                 'choices' => $commande, // Utiliser les noms de fournisseur comme choix
                 'choice_label'=> 'Idfournisseur.Raisonsociale',
                 'choice_value'=> 'Idfournisseur.id',
@@ -130,7 +130,7 @@ public function ommande_fournisseur( Request $request, CommanderRepository $comm
     $form->handleRequest($request);
    
     if ($form->isSubmitted() && $form->isValid()) {
-        $raisonchoisis = $form->get('commandefour')->getData();
+        $raisonchoisis = $form->get('Raisonsociale')->getData();
         $raisonselect = $raisonchoisis->getIdFournisseur();
         
     return $this->render('commander/com_raisonresult.html.twig', [
@@ -154,7 +154,7 @@ public function commande_editeur( Request $request, CommanderRepository $command
     $commande = $commanderRepository->findAllCommandesWithJointures(); // Récupérer tous les fournisseurs
   
     $form = $this->createFormBuilder()
-        ->add('commandeediteur', ChoiceType::class, [
+        ->add('editeur', ChoiceType::class, [
             'choices' => $commande, // Utiliser les noms de fournisseur comme choix
             'choice_label' => 'IdLivre.Editeur',
             'choice_value' => 'IdLivre.id',
@@ -170,7 +170,7 @@ public function commande_editeur( Request $request, CommanderRepository $command
    
     if ($form->isSubmitted() && $form->isValid()) {
       
-      $editeurchoisis = $form->get('commandeediteur')->getData();
+      $editeurchoisis = $form->get('editeur')->getData();
         $editeurselect = $editeurchoisis->getIdLivre();
         
         return $this->render('commander/com_editeurresult.html.twig', [

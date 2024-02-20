@@ -1,11 +1,15 @@
  {% extends 'base.html.twig' %}   
     {% block title %}
-        livre par editeur
+        fournisseur par raison sociale
     {% endblock %}
   {% block  body %} 
-        {{ form_start(form) }}
+        
+    {{ form_start(form) }}
+    <h1  class=" text-aligne text-center">fournisseur par raison sociale </h1>
+<div class ="forme ">
+    {{ form_widget(form) }} 
 
-        <button type="submit" name="save_button" class="btn btn-primary">Valider</button>
-
-        {{ form_end(form) }}
+       <button type="submit"  name="save_button" class="btn btn-primary  mt-4">{{ 'Valider' }}</button>  
+   </div>
+    {{ form_end(form) }}
    {% endblock %} 

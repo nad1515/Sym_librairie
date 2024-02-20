@@ -4,26 +4,26 @@
 
 {% block body %}
  
-<div class= " w-75 mx-auto container  mx-1  ">
+<div class= "  container  ">
   <h1 class=" text-aligne text-center"> Liste des commandes </h1>
      <a href= "{{path('commander_add') }}" > <button class="btn btn-primary mx-2 mb-2">{{ ' Ajouter commande' }}</button></a>  
-  <table class="    table table-striped  " >
+  <table class=" table table-striped  " >
   <thead>
     <tr>
    
-        <th class="table-danger">Date_achat</th>
-        <th class="table-danger">Prix_achat</th>
-        <th class="table-danger">Nbr_exemplaires</th>
-        <th class="table-danger">Code_fournisseur</th>
-        <th class="table-danger">Raison_sociale</th>
-        <th class="table-danger">Pays</th>
-        <th class="table-danger">Titre_livre</th>
-        <th class="table-danger">Theme_livre</th>
-        <th class="table-danger">Nom_auteur</th>
-        <th class="table-danger">Prenom_auteur</th>
-        <th class="table-danger">Editeur</th>
-         <th class="table-danger">idUtilisateur</th>   
-         <th class="table-danger">Action</th>  
+        <th >Date_achat</th>
+        <th >Prix_achat</th>
+        <th >Nbr_exemplaires</th>
+        <th >Code_fournisseur</th>
+        <th >Raison_sociale</th>
+        <th >Pays</th>
+        <th >Titre_livre</th>
+        <th >Theme_livre</th>
+        <th >Nom_auteur</th>
+        <th >Prenom_auteur</th>
+        <th >Editeur</th>
+         <th >idUtilisateur</th>   
+         <th >Action</th>  
         
    </tr>
   </thead>
@@ -32,21 +32,21 @@
     <tr>
    {# {{ dump(commande) }} #}
 
-        <td class="table-primary"> {{commande.getDateAchat()|date('Y-m-d') }} </td>  
-        <td class="table-primary"> {{commande.getPrixAchat() }} </td> 
-        <td class="table-primary"> {{commande.getNbrExemplaires() }} </td> 
-         <td class="table-primary"> {{commande.getIdLivre().getTitreLivre() }} </td> 
-         <td class="table-primary"> {{commande.getIdLivre().getThemelivre() }} </td> 
-         <td class="table-primary"> {{commande.getIdLivre().getNomauteur() }} </td> 
-         <td class="table-primary"> {{commande.getIdLivre().getPrenomauteur() }} </td> 
-         <td class="table-primary"> {{commande.getIdLivre().Editeur() }} </td> 
-         <td class="table-primary"> {{commande.getIdfournisseur().getCodefournisseur() }} </td> 
-         <td class="table-primary"> {{commande.getIdfournisseur().getRaisonsociale() }} </td> 
-         <td class="table-primary"> {{commande.getIdfournisseur().getPays() }} </td>  
+        <td > {{commande.getDateAchat()|date('Y-m-d') }} </td>  
+        <td > {{commande.getPrixAchat() }} </td> 
+        <td > {{commande.getNbrExemplaires() }} </td> 
+         <td > {{commande.getIdLivre().getTitreLivre() }} </td> 
+         <td > {{commande.getIdLivre().getThemelivre() }} </td> 
+         <td > {{commande.getIdLivre().getNomauteur() }} </td> 
+         <td > {{commande.getIdLivre().getPrenomauteur() }} </td> 
+         <td > {{commande.getIdLivre().Editeur() }} </td> 
+         <td > {{commande.getIdfournisseur().getCodefournisseur() }} </td> 
+         <td > {{commande.getIdfournisseur().getRaisonsociale() }} </td> 
+         <td > {{commande.getIdfournisseur().getPays() }} </td>  
          
-           <td class="table-primary"> {{commande.getIdUtilisateur().getPrenom()}} </td>    
+           <td> {{commande.getIdUtilisateur().getPrenom()}} </td>    
     
-     <td class="table-primary">
+     <td>
       <div class="d-flex flex-row">
         <a href= "{{path('commander_edit',{'id':commande.id}) }}" ><button type="update" class="btn btn-warning btn-sm me-3"><i class="bi bi-pencil-fill"></i></button></a>
          <a href="{{ path('commander_delete', {'id': commande.id}) }}"onclick="return confirm('Etes-vous sûr de vouloir supprimer cet personne?')"  ><button type="submit" class="btn btn-danger btn-sm" 

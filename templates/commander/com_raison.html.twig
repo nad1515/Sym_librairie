@@ -1,11 +1,16 @@
  {% extends 'base.html.twig' %}   
     {% block title %}
-        commande  par Fournisseur
+      commande par Raison sociale
     {% endblock %}
-  {% block  body %} 
-        {{ form_start(form) }}
+  {% block body %}
+<h1  class=" text-aligne text-center"> commande par raison sociale </h1>
 
-        <button type="submit" name="save_button" class="btn btn-primary">Valider</button>
+    {{ form_start(form) }}
+<div class ="forme ">
+    {{ form_widget(form) }}
 
-        {{ form_end(form) }}
-   {% endblock %} 
+     <button class="btn btn-primary  mt-4">{{ ' Mettre a jours' }}</button>
+   </div>
+    {{ form_end(form) }}
+
+{% endblock %}

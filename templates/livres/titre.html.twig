@@ -1,16 +1,16 @@
 
 
-    {% extends 'header.html.twig' %}  
+    {% extends 'base.html.twig' %}  
 
 {% block title %}
-  livre par auteur
+  livre par titre
 {% endblock %}
 
 {% block body %}
-<h1  class=" text-aligne text-center"> livre par auteur </h1>
+<h1  class=" text-aligne text-center"> livre par titre</h1>
 
     {{ form_start(form) }}
-<div class ="mx-auto container  ml-5"> 
+<div class ="forme ">
     {{ form_widget(form) }} 
 
        <button type="submit"  name="save_button" class="btn btn-primary  mt-4">{{ 'Valider' }}</button>  

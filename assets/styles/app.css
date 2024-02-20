@@ -2,10 +2,15 @@
 *{
     box-sizing: border-box;
 }
+
 body {
     /* background-color: skyblue; */
     background-size: 150%; 
 }
+header .bar{
+    background-color: rgba(242, 187, 58, 0.652) !important; 
+}
+
 main{
     width: 100%;
     min-height: 100vh;
@@ -15,16 +20,46 @@ main{
     margin: 0 auto;
     overflow: scroll;
 
+ }
+ .table {
+    margin:auto;
+    width: 80%;
+
+    border-radius: 2rem;
+    border: 1px solid rgba(238, 118, 204, 0.861);
+    /* background-color: rgba(188, 226, 226, 0.618); */
+    /* box-shadow: 40px -10px rgba(0, 128, 128, 0.639); */
+    border-radius: 2rem; 
+    
+
+}
+th{
+    background-color: rgba(242, 187, 58, 0.652) !important;   
+}
+td {
+    /* background-color: rgba(67, 155, 47, 0.924) !important; */
+    color:rgba(1, 17, 12, 0.962) !important;
 }
 
 
-nav-link{
+-link{
     font-size: 1.5rem;
 }
-.required{
-}
+
 h1{
     background-color: rgba(127, 255, 212, 0.564);
+}
+form div label{
+    margin-right: 2rem;
+    min-width: 130px;
+    background-color:  rgba(173, 241, 38, 0.458);
+    text-align: center;
+    border-radius: 2rem;
+    margin-right: 2rem;
+
+}
+form div label select{
+    width: 50%;
 }
 .forme{
    width:50%;
@@ -39,7 +74,7 @@ h1{
    padding: 3rem;
    flex-direction: column;
    border-radius: 1rem;
-
+   box-shadow: 30px -10px rgba(0, 128, 128, 0.639);
 }
 #commander div {
     margin-bottom: 2rem;
@@ -50,11 +85,43 @@ h1{
 }
 #commander div label {
     margin-right: 1rem;
-    min-width: 130px;
-    background-color: rgba(250, 235, 215, 0.772);
+    min-width: 150px;
+    background-color: rgba(173, 241, 38, 0.458);
     text-align: center;
+    border-radius: 1rem;
 
 }
+#fournisseurs div {
+    margin-bottom: 2rem;
+    width: 100%;
+}
+#fournisseurs div input, select {
+    width: 50%;
+}
+#fournisseurs div label {
+    margin-right: 1rem;
+    min-width: 150px;
+    background-color: rgba(173, 241, 38, 0.458);
+    text-align: center;
+    border-radius: 1rem;
+}
+#livres div {
+    margin-bottom: 2rem;
+    width: 100%;
+   
+}
+#livres div input, select {
+    width: 50%;
+    border-radius: 1rem;
+}
+#livres div label {
+    margin-right: 1rem;
+    min-width: 150px;
+    background-color: rgba(173, 241, 38, 0.458);
+    text-align: center;
+    border-radius: 1rem;
+}
+
 
 footer {
     width: 100%;
@@ -62,6 +129,6 @@ footer {
     margin-top: auto;
     padding: 2rem;
     color: white;
-    background-color: rgba(80, 78, 78, 0.829);
+    background-color: rgba(231, 186, 186, 0.712);
    
 }

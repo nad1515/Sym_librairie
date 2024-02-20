@@ -2,40 +2,40 @@
  {% block body %}
     <h1>Liste des commandes par Fournisseur</h1>
 
-    <table class='table table-bordered table-responsive-md'>
+    <table class='table table-bordered '>
         <tr>
             
-        <th class="table-danger">Date_achat</th>
-        <th class="table-danger">Prix_achat</th>
-        <th class="table-danger">Nbr_exemplaires</th>
-        <th class="table-danger">Code_fournisseur</th>
-        <th class="table-danger">Raison_sociale</th>
-        <th class="table-danger">Pays</th>
-        <th class="table-danger">Titre_livre</th>
-        <th class="table-danger">Theme_livre</th>
-        <th class="table-danger">Nom_auteur</th>
-        <th class="table-danger">Prenom_auteur</th>
-        <th class="table-danger">Editeur</th>
-         <th class="table-danger">idUtilisateur</th>   
+        <th>Date_achat</th>
+        <th>Prix_achat</th>
+        <th>Nbr_exemplaires</th>
+        <th>Code_fournisseur</th>
+        <th>Raison_sociale</th>
+        <th>Pays</th>
+        <th>Titre_livre</th>
+        <th>Theme_livre</th>
+        <th>Nom_auteur</th>
+        <th>Prenom_auteur</th>
+        <th>Editeur</th>
+         <th>idUtilisateur</th>   
 
          
         
         </tr>
         {% for commande in commandes %} 
        <tr>
-        <td class="table-primary"> {{commande.getDateAchat()|date('Y-m-d') }} </td>  
-        <td class="table-primary"> {{commande.getPrixAchat() }} </td> 
-        <td class="table-primary"> {{commande.getNbrExemplaires() }} </td> 
-         <td class="table-primary"> {{commande.getIdLivre().getTitreLivre() }} </td> 
-         <td class="table-primary"> {{commande.getIdLivre().getThemelivre() }} </td> 
-         <td class="table-primary"> {{commande.getIdLivre().getNomauteur() }} </td> 
-         <td class="table-primary"> {{commande.getIdLivre().getPrenomauteur() }} </td> 
-         <td class="table-primary"> {{commande.getIdLivre().Editeur() }} </td> 
-         <td class="table-primary"> {{commande.getIdfournisseur().getCodefournisseur() }} </td> 
-         <td class="table-primary"> {{commande.getIdfournisseur().getRaisonsociale() }} </td> 
-         <td class="table-primary"> {{commande.getIdfournisseur().getPays() }} </td>  
+        <td> {{commande.getDateAchat()|date('Y-m-d') }} </td>  
+        <td> {{commande.getPrixAchat() }} </td> 
+        <td> {{commande.getNbrExemplaires() }} </td> 
+         <td> {{commande.getIdLivre().getTitreLivre() }} </td> 
+         <td> {{commande.getIdLivre().getThemelivre() }} </td> 
+         <td> {{commande.getIdLivre().getNomauteur() }} </td> 
+         <td> {{commande.getIdLivre().getPrenomauteur() }} </td> 
+         <td> {{commande.getIdLivre().Editeur() }} </td> 
+         <td> {{commande.getIdfournisseur().getCodefournisseur() }} </td> 
+         <td> {{commande.getIdfournisseur().getRaisonsociale() }} </td> 
+         <td> {{commande.getIdfournisseur().getPays() }} </td>  
          
-           <td class="table-primary"> {{commande.getIdUtilisateur().getPrenom()}} </td>    
+           <td> {{commande.getIdUtilisateur().getPrenom()}} </td>    
     
             
                 

@@ -85,7 +85,7 @@ public function fournisseur_raisonsociale( Request $request, FournisseursReposit
 
     // Créer le formulaire
     $form = $this->createFormBuilder()
-        ->add('fourraisonsociale', ChoiceType::class, [
+        ->add('raisonsociale', ChoiceType::class, [
             'choices' => $fournisseurs, // Utiliser les noms de fournisseur comme choix
             'choice_label' => 'raisonsociale',
             'choice_value' => 'raisonsociale',
@@ -102,7 +102,7 @@ public function fournisseur_raisonsociale( Request $request, FournisseursReposit
 
     if ($form->isSubmitted() && $form->isValid()) {
       
-      $raisonchoisis = $form->get('fourraisonsociale')->getData();
+      $raisonchoisis = $form->get('raisonsociale')->getData();
         $raisonSociale = $raisonchoisis->getRaisonSociale();
         return $this->render('fournisseurs/raisonresult.html.twig', [
           'fournisseurs' => $fournisseursRepository->findBy(['Raison_sociale' => $raisonSociale]),
@@ -123,7 +123,7 @@ public function fournisseur_localite( Request $request, FournisseursRepository $
 
     // Créer le formulaire
     $form = $this->createFormBuilder()
-        ->add('fourlocalite', ChoiceType::class, [
+        ->add('localite', ChoiceType::class, [
             'choices' => $fournisseurs, // Utiliser les noms de fournisseur comme choix
             'choice_label' => 'localite',
             'choice_value' => 'localite',
@@ -140,7 +140,7 @@ public function fournisseur_localite( Request $request, FournisseursRepository $
 
     if ($form->isSubmitted() && $form->isValid()) {
       
-      $localitechoisis = $form->get('fourlocalite')->getData();
+      $localitechoisis = $form->get('localite')->getData();
         $localite = $localitechoisis->getLocalite();
         return $this->render('fournisseurs/localiteresult.html.twig', [
           'fournisseurs' => $fournisseursRepository->findBy(['Localite' => $localite]),
@@ -163,7 +163,7 @@ public function fournisseur_pays( Request $request, FournisseursRepository $four
 
     // Créer le formulaire
     $form = $this->createFormBuilder()
-        ->add('fourpays', ChoiceType::class, [
+        ->add('pays', ChoiceType::class, [
             'choices' => $fournisseurs, // Utiliser les noms de fournisseur comme choix
             'choice_label' => 'pays',
             'choice_value' => 'pays',
@@ -179,7 +179,7 @@ public function fournisseur_pays( Request $request, FournisseursRepository $four
 
     if ($form->isSubmitted() && $form->isValid()) {
       
-      $payschoisis = $form->get('fourpays')->getData();
+      $payschoisis = $form->get('pays')->getData();
         $pays = $payschoisis->getPays();
         return $this->render('fournisseurs/paysresult.html.twig', [
           'fournisseurs' => $fournisseursRepository->findBy(['Pays' => $pays]),

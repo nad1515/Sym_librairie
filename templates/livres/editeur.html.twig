@@ -3,9 +3,13 @@
         livre par editeur
     {% endblock %}
   {% block  body %} 
-        {{ form_start(form) }}
+  <h1  class=" text-aligne text-center"> livre par Editeur</h1>
+       
+    {{ form_start(form) }}
+<div class ="forme "> 
+    {{ form_widget(form) }} 
 
-        <button type="submit" name="save_button" class="btn btn-primary">Valider</button>
-
-        {{ form_end(form) }}
+       <button type="submit"  name="save_button" class="btn btn-primary  mt-4">{{ 'Valider' }}</button>  
+   </div>
+    {{ form_end(form) }}
    {% endblock %} 
