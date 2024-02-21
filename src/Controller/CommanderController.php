@@ -114,7 +114,7 @@ public function commande_date(Request $request, CommanderRepository $commanderRe
 #[Route('/fournisseur', name: 'commande_fournisseur', methods:['GET','POST'])]
 public function ommande_fournisseur( Request $request, CommanderRepository $commanderRepository, EntityManagerInterface $entityManager): Response
 {
-        $commande = $commanderRepository->findAllCommandesWithJointures(); // Récupérer tous les fournisseurs
+        $commande = $commanderRepository->findAll(); // Récupérer tous les fournisseurs
         $form = $this->createFormBuilder()
             ->add('Raisonsociale', ChoiceType::class, [
                 'choices' => $commande, // Utiliser les noms de fournisseur comme choix

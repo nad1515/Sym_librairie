@@ -7,10 +7,22 @@ body {
     /* background-color: skyblue; */
     background-size: 150%; 
 }
-header .bar{
-    background-color: rgba(242, 187, 58, 0.652) !important; 
+header .navbar{
+    background-color: rgba(247, 214, 246, 0.601) !important; 
 }
+ header nav div {
+    justify-content: center;
+    justify-content: space-around;
 
+}
+header  nav div a:hover{
+    background-color: rgba(197, 70, 70, 0.8);
+    padding: 1rem;
+}
+header  nav div ul li a:hover{
+    background-color: rgba(70, 78, 197, 0.8) !important;
+    padding: 1rem;
+}
 main{
     width: 100%;
     min-height: 100vh;
@@ -37,7 +49,7 @@ th{
     background-color: rgba(242, 187, 58, 0.652) !important;   
 }
 td {
-    /* background-color: rgba(67, 155, 47, 0.924) !important; */
+    background-color: rgb(215, 241, 210) !important;
     color:rgba(1, 17, 12, 0.962) !important;
 }
 
