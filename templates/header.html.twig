@@ -46,6 +46,15 @@
             <li class="nav-item dropdown"><a class="dropdown-item" href="/commander/editeur">par_editeur</a></li>
             </ul> 
           </div>  
+           
+            {% if is_granted('ROLE_ADMIN') %}
+            <a href="/user/add" class="btn btn-info m-2 p-2">ajouter un utilisateur</a>
+           {% endif %}
+           <a href="/login" class="btn btn-primary m-2 p-2">connesction</a>
+           {# {% if app.user %}
+          {# Si un utilisateur est connecté, affichez le bouton de déconnexion #}
+           {# <a href="{{ path('logout') }}">Se déconnecter</a>  #}
+          {# {% endif %}  #} 
       
       </dive>  
  </nav>

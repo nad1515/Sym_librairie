@@ -7,7 +7,9 @@
  
 <div class= " container  ">
   <h1 class=" text-aligne text-center"> Liste des fournisseurs </h1>
+    {% if is_granted('ROLE_ADMIN') %}
      <a href= "{{path('fournisseurs_add') }}" > <button class="btn btn-primary mx-2 mb-2">{{ ' Ajouter fournisseur' }}</button></a>  
+    {% endif %}
   <table class="  table table-striped  " >
   <thead>
     <tr>
@@ -21,7 +23,9 @@
     <th>Url_fournisseur</th>
     <th>Email_fournisseur</th>
     <th>Fax_fournisseur</th>
+      {% if is_granted('ROLE_ADMIN') %}
     <th>Action</th>
+    {% endif %}
  
    </tr>
   </thead>
@@ -37,7 +41,7 @@
      <td > {{fournisseur.getUrlfournisseur()}} </td>
      <td > {{fournisseur.getEmailfournisseur()}} </td>
      <td > {{fournisseur.getFaxfournisseur()}} </td>
-    
+      {% if is_granted('ROLE_ADMIN') %}
      <td>
       <div class="d-flex flex-row">
         <a href= "{{path('fournisseurs_edit',{'id':fournisseur.id}) }}" ><button type="update" class="btn btn-warning btn-sm me-3"><i class="bi bi-pencil-fill"></i></button></a>
@@ -45,6 +49,7 @@
          onclick="return confirmation()"><i class="bi bi-trash-fill"></i></button></a> 
           </div>
       </td> 
+      {% endif %}
   </tr> 
  {% endfor %}
 </table>   

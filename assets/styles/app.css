@@ -54,14 +54,14 @@ td {
 }
 
 
--link{
+link{
     font-size: 1.5rem;
 }
 
 h1{
     background-color: rgba(127, 255, 212, 0.564);
 }
-form div label{
+form div label {
     margin-right: 2rem;
     min-width: 130px;
     background-color:  rgba(173, 241, 38, 0.458);
@@ -73,7 +73,7 @@ form div label{
 form div label select{
     width: 50%;
 }
-.forme{
+.forme  .connect{
    width:50%;
    margin:auto;
    border: 1px solid rgba(143, 143, 154, 0.861);
@@ -95,7 +95,7 @@ form div label select{
 #commander div input, select {
     width: 50%;
 }
-#commander div label {
+#commander div label  {
     margin-right: 1rem;
     min-width: 150px;
     background-color: rgba(173, 241, 38, 0.458);
@@ -132,6 +132,27 @@ form div label select{
     background-color: rgba(173, 241, 38, 0.458);
     text-align: center;
     border-radius: 1rem;
+}
+input {
+    border-radius: 1rem;
+ }
+ /* .connect{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 3rem;
+  
+}  */
+
+ .connect label  {
+    margin-right: 1rem;
+    min-width: 150px;
+    background-color: rgba(173, 241, 38, 0.458);
+    text-align: center;
+    border-radius: 1rem;
+    color:black;
+
 }
 
 

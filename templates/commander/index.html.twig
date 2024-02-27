@@ -6,7 +6,10 @@
  
 <div class= "  container  ">
   <h1 class=" text-aligne text-center"> Liste des commandes </h1>
-     <a href= "{{path('commander_add') }}" > <button class="btn btn-primary mx-2 mb-2">{{ ' Ajouter commande' }}</button></a>  
+    {% if is_granted('ROLE_ADMIN') %} 
+     <a href= "{{path('commander_add') }}" > <button class="btn 
+     btn-primary mx-2 mb-2">{{ ' Ajouter commande' }}</button></a> 
+    {% endif %} 
   <table class=" table table-striped  " >
   <thead>
     <tr>
@@ -22,8 +25,10 @@
         <th >Nom_auteur</th>
         <th >Prenom_auteur</th>
         <th >Editeur</th>
-         <th >idUtilisateur</th>   
-         <th >Action</th>  
+         <th >idUtilisateur</th> 
+          {% if is_granted('ROLE_ADMIN') %}  
+         <th >Action</th> 
+           {% endif %}  
         
    </tr>
   </thead>
@@ -45,14 +50,15 @@
          <td > {{commande.getIdfournisseur().getPays() }} </td>  
          
            <td> {{commande.getIdUtilisateur().getPrenom()}} </td>    
-    
+    {% if is_granted('ROLE_ADMIN') %}
      <td>
       <div class="d-flex flex-row">
         <a href= "{{path('commander_edit',{'id':commande.id}) }}" ><button type="update" class="btn btn-warning btn-sm me-3"><i class="bi bi-pencil-fill"></i></button></a>
          <a href="{{ path('commander_delete', {'id': commande.id}) }}"onclick="return confirm('Etes-vous sûr de vouloir supprimer cet personne?')"  ><button type="submit" class="btn btn-danger btn-sm" 
          onclick="return confirmation()"><i class="bi bi-trash-fill"></i></button></a> 
           </div>
-      </td> 
+      </td>
+    {% endif %} 
   </tr> 
  {% endfor %}
  </table>   
